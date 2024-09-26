@@ -21,9 +21,9 @@
         android:id="@+id/textViewLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trace - nimal"
+        android:text="Race - nimal"
         android:textSize="50sp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="200dp"
         android:textColor="@color/white"
         android:fontFamily="@font/logo_font"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
                 app:srcCompat="@mipmap/user_icon_foreground" />
 
             <EditText
-                android:id="@+id/editTextUserName"
+                android:id="@+id/txtUsername"
                 android:layout_width="213dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -128,6 +128,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/grup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/ButtonLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/okok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/body_font_normal"
+            android:text="Do not have account yet ? "
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/SignUpLink"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/body_font_normal"
+            android:text="Create account."
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            />
+
+    </LinearLayout>
+
+
     <TextView
         android:layout_marginBottom="15dp"
         android:id="@+id/textView3"
@@ -141,31 +178,36 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardElevation="8dp"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/grup">
 
-        <TextView
-            android:id="@+id/fakeButtonLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/fake_button"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:paddingVertical="12dp"
-            android:paddingHorizontal="70dp"
-            android:text="LOG IN"
-            android:textColor="#FFFFFF"
-            android:fontFamily="@font/body_font_bold"
-            android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/ButtonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/fake_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/body_font_bold"
+        android:gravity="center"
+        android:paddingHorizontal="70dp"
+        android:paddingVertical="12dp"
+        android:text="LOG IN"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:ignore="MissingConstraints" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

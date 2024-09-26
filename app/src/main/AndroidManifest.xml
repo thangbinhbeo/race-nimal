@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PRM392MiniProjectRacenimal"
         tools:targetApi="31">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ResultActivity"></activity>
+              <activity android:name=".ResultActivity"></activity>
         <activity
             android:name=".LoginScreen"
+
             android:exported="true"
             android:theme="@style/Theme.PRM392MiniProjectRacenimal">
             <intent-filter>

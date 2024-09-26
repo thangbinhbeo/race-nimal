@@ -14,8 +14,10 @@
         tools:targetApi="31">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ResultActivity"></activity>
+              <activity android:name=".ResultActivity"></activity>
         <activity
-            android:name=".WalletActivity"
+            android:name=".LoginScreen"
+
             android:exported="true"
             android:theme="@style/Theme.PRM392MiniProjectRacenimal">
             <intent-filter>
@@ -23,6 +25,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignupScreen"
+            android:exported="true"
+            android:theme="@style/Theme.PRM392MiniProjectRacenimal">
+
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PRM392MiniProjectRacenimal">
+
         </activity>
     </application>
 

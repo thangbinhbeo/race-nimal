@@ -1,5 +1,6 @@
 package com.example.prm392_miniproject_racenimal;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,11 +17,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignupScreen extends AppCompatActivity {
+    private EditText editTextUserName;
     private EditText edPassword;
     private EditText edConfirmPass;
     private ImageView eyeIcon;
     private ImageView eyeIconConfirm;
     private TextView txtTitle;
+    private TextView SignInLink;
+    private TextView fakeBtnSignUp;
     private final boolean[] isPasswordVisible = {false};
 
     @Override
@@ -33,6 +38,23 @@ public class SignupScreen extends AppCompatActivity {
         txtTitle = (TextView) findViewById(R.id.textViewLogo);
         eyeIcon = (ImageView) findViewById(R.id.iconEye);
         eyeIconConfirm = (ImageView) findViewById(R.id.confirmIconEye);
+        editTextUserName = (EditText) findViewById(R.id.editTextUserName);
+        SignInLink = (TextView) findViewById(R.id.SignInLink);
+        fakeBtnSignUp = findViewById(R.id.fakeButtonSignup);
+
+        SignInLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signIn();
+            }
+        });
+
+        fakeBtnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signUp();
+            }
+        });
 
         txtTitle.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -87,5 +109,29 @@ public class SignupScreen extends AppCompatActivity {
                 isPasswordVisible[0] = !isPasswordVisible[0];
             }
         });
+    }
+
+    private void signUp() {
+        String userName = editTextUserName.getText().toString();
+        String password = edPassword.getText().toString();
+        String confirmPassword = edConfirmPass.getText().toString();
+
+        if(!userName.isEmpty() && !password.isEmpty() && password.equals(confirmPassword)) {
+            Account user = AccountManager.getInstance().getAccount(userName, password);
+            if (user == null) {
+                user = new Account(userName, password, 100);
+                AccountManager.getInstance().addAccount(user);
+            }
+            Intent intent = new Intent(this, LoginScreen.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private void signIn() {
+        Intent intent = new Intent(this, LoginScreen.class);
+        startActivity(intent);
+        finish();
     }
 }

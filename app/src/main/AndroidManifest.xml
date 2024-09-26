@@ -14,7 +14,6 @@
         tools:targetApi="31">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ResultActivity"></activity>
-              <activity android:name=".ResultActivity"></activity>
         <activity
             android:name=".LoginScreen"
 
@@ -28,12 +27,6 @@
         </activity>
         <activity
             android:name=".SignupScreen"
-            android:exported="true"
-            android:theme="@style/Theme.PRM392MiniProjectRacenimal">
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.PRM392MiniProjectRacenimal">
 

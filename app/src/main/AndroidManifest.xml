@@ -15,7 +15,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ResultActivity"></activity>
         <activity
-            android:name=".LoginScreen"
+            android:name=".WalletActivity"
 
             android:exported="true"
             android:theme="@style/Theme.PRM392MiniProjectRacenimal">

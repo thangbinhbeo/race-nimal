@@ -108,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="13sp"
+            android:textSize="10sp"
             android:layout_marginTop="70dp"
             android:text="quả là một ngày đẹp trời để bán vài lô đất chơi cá độ nhỉ ?" />
 

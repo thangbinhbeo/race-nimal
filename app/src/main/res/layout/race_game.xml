@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/mainLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_play">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        app:cardBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/wallet" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                android:fontFamily="@font/body_font_bold"
+                android:text="WALLET BALANCE:"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView4" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$1000"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TRACE - NIMAL"
+                android:layout_marginTop="10dp"
+                android:textSize="40sp"
+                android:fontFamily="@font/logo_font"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/addMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="Click here to add money"
+                android:textSize="10sp"
+                android:textColor="#8A8A8A"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Borse"
+        android:textColor="#3E8945"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/panton_lightcaps"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarBao"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarBao"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:progressDrawable = "@drawable/race_line_grass"
+        android:thumb="@drawable/bao_horse"
+        android:splitTrack="false"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tat"
+        android:textColor="#2D55A2"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/panton_lightcaps"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarTien"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarTien"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:progressDrawable = "@drawable/wood"
+        android:thumb="@drawable/tien_cat"
+        android:splitTrack="false"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarBao" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mutterfly"
+        android:textColor="#8E789F"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/panton_lightcaps"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarManh"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarManh"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:progressDrawable = "@drawable/lavendar"
+        android:thumb="@drawable/manh_butterfly"
+        android:splitTrack="false"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarTien" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bhale"
+        android:textColor="#70A3E4"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/panton_lightcaps"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarBinh"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarBinh"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:progressDrawable = "@drawable/water"
+        android:thumb="@drawable/binh_whale"
+        android:splitTrack="false"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarManh" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tear"
+        android:textColor="#E3EAF3"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/panton_lightcaps"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarTung"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarTung"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:progressDrawable = "@drawable/ice"
+        android:thumb="@drawable/tung_polar"
+        android:splitTrack="false"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarBinh" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <View
+            android:id="@+id/shadow_top"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/shadow_top"
+            app:layout_constraintBottom_toTopOf="@+id/cardView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@color/white"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@mipmap/leave" />
+
+                <TextView
+                    android:id="@+id/betButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="BET"
+                    android:padding="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:background="@drawable/bet_button"
+                    android:gravity="center"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintEnd_toStartOf="@+id/raceButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/raceButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="RACE"
+                    android:padding="16dp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:background="@drawable/race_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/betButton"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/editTextNumberBao"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="5dp"
+        android:fontFamily="@font/body_font_normal"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textSize="16sp"
+        android:background="@drawable/bet_input"
+        app:layout_constraintStart_toEndOf="@+id/seekBarBao"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+    <EditText
+        android:id="@+id/editTextNumberTien"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="5dp"
+        android:fontFamily="@font/body_font_normal"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="16sp"
+        android:background="@drawable/bet_input"
+        app:layout_constraintStart_toEndOf="@+id/seekBarTien"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberBao" />
+
+    <EditText
+        android:id="@+id/editTextNumberManh"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="5dp"
+        android:fontFamily="@font/body_font_normal"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textSize="16sp"
+        android:background="@drawable/bet_input"
+        app:layout_constraintStart_toEndOf="@+id/seekBarManh"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberTien" />
+
+    <EditText
+        android:id="@+id/editTextNumberBinh"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="5dp"
+        android:fontFamily="@font/body_font_normal"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textSize="16sp"
+        android:background="@drawable/bet_input"
+        app:layout_constraintStart_toEndOf="@+id/seekBarBinh"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberManh" />
+
+    <EditText
+        android:id="@+id/editTextNumberTung"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="5dp"
+        android:fontFamily="@font/body_font_normal"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="number"
+        android:textSize="16sp"
+        android:background="@drawable/bet_input"
+        app:layout_constraintStart_toEndOf="@+id/seekBarTung"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberBinh" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$"
+        android:layout_marginEnd="34dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/logo_font"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberBao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

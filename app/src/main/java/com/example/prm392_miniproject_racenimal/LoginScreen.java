@@ -116,7 +116,7 @@ public class LoginScreen extends AppCompatActivity {
                 }
             }
             if (isAuthenticated) {
-                Intent intent = new Intent(LoginScreen.this, MainActivity.class);
+                Intent intent = new Intent(LoginScreen.this, RaceScreen.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
                 finish();

@@ -35,13 +35,18 @@ public class WalletActivity extends AppCompatActivity {
 
         // Lấy số tiền còn lại từ Main
         intentfromMain = getIntent();
-        if (intentfromMain.hasExtra("remain")) {
-            currentBalance = intentfromMain.getDoubleExtra("remain", 0.0);
+
+        Account user = intentfromMain.getParcelableExtra("user");
+        if (user == null) {
+            Toast.makeText(this, "Null user!", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            currentBalance = user.getBudget();
             updateWalletBalance();
         }
 
         // Intent về MainActivity
-        intentFromThisPage = new Intent(WalletActivity.this, MainActivity.class);
+        intentFromThisPage = new Intent(WalletActivity.this, RaceScreen.class);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.bgm);
         mediaPlayer.setLooping(false);
@@ -62,7 +67,8 @@ public class WalletActivity extends AppCompatActivity {
 
                         Toast.makeText(WalletActivity.this, "Added $" + amount + " to your wallet!", Toast.LENGTH_SHORT).show();
 
-                        intentFromThisPage.putExtra("updatedBalance", currentBalance);
+                        user.setBudget(currentBalance);
+                        intentFromThisPage.putExtra("user", user);
                     } else {
                         Toast.makeText(WalletActivity.this, "Please enter a positive amount.", Toast.LENGTH_SHORT).show();
                     }
@@ -76,6 +82,7 @@ public class WalletActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intentFromThisPage);
+                finish();
             }
         });
     }

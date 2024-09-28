@@ -15,7 +15,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".ResultActivity"/>
         <activity
-            android:name=".LoginScreen"
+            android:name=".RaceScreen"
 
             android:exported="true"
             android:theme="@style/Theme.PRM392MiniProjectRacenimal">
@@ -34,7 +34,7 @@
 
         </activity>
         <activity
-            android:name=".RaceScreen"
+            android:name=".LoginScreen"
             android:exported="true"
             android:theme="@style/Theme.PRM392MiniProjectRacenimal">
             <intent-filter>

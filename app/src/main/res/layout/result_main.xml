@@ -19,21 +19,34 @@
         app:layout_constraintVertical_bias="0.118"
         app:srcCompat="@drawable/bg_result" />
 
-    <pl.droidsonroids.gif.GifImageView
+    <ImageView
         android:id="@+id/gifImageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
-        android:src="@drawable/tivo"
-        android:layout_marginTop="-160dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_height="140dp"
+        android:layout_marginTop="256dp"
+        android:src="@drawable/bao_horse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="464dp"
+        android:text="YOU WIN 10 USD"
+        android:textStyle="bold"
+        android:textColor="#933E03"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="560dp"
         android:text="YOU WIN 10 USD"
         android:textStyle="bold"
         android:textColor="#933E03"

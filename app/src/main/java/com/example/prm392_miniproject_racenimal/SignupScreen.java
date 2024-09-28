@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -121,11 +122,13 @@ public class SignupScreen extends AppCompatActivity {
             if (user == null) {
                 user = new Account(userName, password, 100);
                 AccountManager.getInstance().addAccount(user);
+                Intent intent = new Intent(this, LoginScreen.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "User is already existed!!", Toast.LENGTH_SHORT).show();
             }
-            Intent intent = new Intent(this, LoginScreen.class);
-            intent.putExtra("user", user);
-            startActivity(intent);
-            finish();
         }
     }
 

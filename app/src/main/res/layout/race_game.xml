@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView4" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/tvBudget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$1000"
@@ -131,7 +131,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mutterfly"
+        android:text="MutterFly"
         android:textColor="#8E789F"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/panton_lightcaps"

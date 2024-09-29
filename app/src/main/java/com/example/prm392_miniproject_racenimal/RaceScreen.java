@@ -7,6 +7,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ public class RaceScreen extends AppCompatActivity {
     private TextView btnBet;
     private TextView tvBudget;
     private TextView btnAdd;
+    private ImageView btnBack;
 
     private Handler handler = new Handler();
     private Random random = new Random();
@@ -61,6 +63,9 @@ public class RaceScreen extends AppCompatActivity {
         Intent intent = getIntent();
 
         user = intent.getParcelableExtra("user");
+
+        user = AccountManager.getInstance(this).getAccount(user);
+
         if (user == null) {
             Toast.makeText(this, "Null user!", Toast.LENGTH_SHORT).show();
         }
@@ -79,7 +84,9 @@ public class RaceScreen extends AppCompatActivity {
         betMutterfly = findViewById(R.id.editTextNumberManh);
         betTear = findViewById(R.id.editTextNumberTung);
         btnAdd = findViewById(R.id.addMore);
+        btnBack = findViewById(R.id.btnLogout);
 
+        freezeSeekbar();
         loadBudget();
         setStartButton(btnStart, false);
 
@@ -101,11 +108,51 @@ public class RaceScreen extends AppCompatActivity {
         txtlogo.getPaint().setShader(textShader);
 
         changeBackground();
+
+        btnBack.setOnClickListener(v -> back());
+    }
+
+    private void freezeSeekbar() {
+        seekBarBao.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        seekBarTien.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        seekBarBinh.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        seekBarManh.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        seekBarTung.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
     }
 
     private void addMoney(Account user) {
         Intent intent = new Intent(RaceScreen.this, WalletActivity.class);
         intent.putExtra("user", user);
+        intent.putExtra("activity", "raceScreen");
         startActivity(intent);
         finish();
     }
@@ -138,6 +185,7 @@ public class RaceScreen extends AppCompatActivity {
         if (!isBudgetValid()) {
             Toast.makeText(this, "Out of budget!", Toast.LENGTH_SHORT).show();
         } else {
+            loadBudget();
             setStartButton(btnStart, true);
             setBetButton(btnBet, false);
             betBorse.setEnabled(false);
@@ -159,6 +207,8 @@ public class RaceScreen extends AppCompatActivity {
     private void startRace() {
         resetProgress();
         setStartButton(btnStart, false);
+        btnBack.setEnabled(false);
+        btnAdd.setEnabled(false);
         animateHorses();
     }
 
@@ -227,30 +277,36 @@ public class RaceScreen extends AppCompatActivity {
                     String moneyWinMessage = "";
                     boolean isWinnerFound = false;
                     double totalMoney = 0;
+                    double winMoney = 0;
 
                     if (seekBarBao.getProgress() >= finishLine) {
                         winnerMessage = "Borse Wins!";
+                        winMoney = betBorseMoney;
                         totalMoney = betBorseMoney - betTatMoney - betBhaleMoney - betMutterflyMoney - betTearMoney;
                         isWinnerFound = true;
                     } else if (seekBarTien.getProgress() >= finishLine) {
                         winnerMessage = "Tat Wins!";
+                        winMoney = betTatMoney ;
                         totalMoney = - betBorseMoney + betTatMoney - betBhaleMoney - betMutterflyMoney - betTearMoney;
                         isWinnerFound = true;
                     } else if (seekBarBinh.getProgress() >= finishLine) {
                         winnerMessage = "Bhale Wins!";
+                        winMoney = betBhaleMoney;
                         totalMoney = - betBorseMoney - betTatMoney + betBhaleMoney - betMutterflyMoney - betTearMoney;
                         isWinnerFound = true;
                     } else if (seekBarManh.getProgress() >= finishLine) {
                         winnerMessage = "Mutterfly Wins!";
+                        winMoney = betMutterflyMoney;
                         totalMoney = - betBorseMoney - betTatMoney - betBhaleMoney + betMutterflyMoney - betTearMoney;
                         isWinnerFound = true;
                     } else if (seekBarTung.getProgress() >= finishLine) {
                         winnerMessage = "Tear Wins!";
+                        winMoney = betTearMoney;
                         totalMoney = - betBorseMoney - betTatMoney - betBhaleMoney - betMutterflyMoney + betTearMoney;
                         isWinnerFound = true;
                     }
 
-                    user.setBudget(user.getBudget() + totalMoney);
+                    AccountManager.getInstance(this).addMoney(user, winMoney * 2);
 
                     if (totalMoney < 0) {
                         moneyWinMessage = "You lose " + (-totalMoney) + " USD";
@@ -266,6 +322,8 @@ public class RaceScreen extends AppCompatActivity {
 
                     setBetButton(btnBet, true);
                     setStartButton(btnStart, false);
+                    btnBack.setEnabled(true);
+                    btnAdd.setEnabled(true);
                     loadBudget();
                     resetProgress();
                 });
@@ -307,7 +365,7 @@ public class RaceScreen extends AppCompatActivity {
     }
 
     private void loadBudget() {
-        tvBudget.setText("$" + user.getBudget());
+        tvBudget.setText("$" + AccountManager.getInstance(this).getAccount(user).getBudget());
         betBorse.setEnabled(true);
         betTat.setEnabled(true);
         betBhale.setEnabled(true);
@@ -318,7 +376,6 @@ public class RaceScreen extends AppCompatActivity {
     private boolean isBudgetValid() {
         double budget = user.getBudget();
 
-        // Initialize all bet amounts to 0
         double betBorseMoney = 0;
         double betTatMoney = 0;
         double betBhaleMoney = 0;
@@ -346,19 +403,25 @@ public class RaceScreen extends AppCompatActivity {
             betTearMoney = Double.parseDouble(betTear.getText().toString());
         }
 
-        // Check if any individual bet exceeds the budget
         if (betBorseMoney > budget || betTatMoney > budget ||
                 betBhaleMoney > budget || betMutterflyMoney > budget ||
                 betTearMoney > budget) {
             return false;
         }
 
-        // Check if the total of all bets exceeds the budget
         double totalBet = betBorseMoney + betTatMoney + betBhaleMoney + betMutterflyMoney + betTearMoney;
         if (totalBet > budget) {
             return false;
         }
 
-        return true; // Budget is valid
+        AccountManager.getInstance(this).addMoney(user, -totalBet);
+        return true;
+    }
+
+    private void back() {
+        Intent intent = new Intent(this, HomeScreen.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+        finish();
     }
 }

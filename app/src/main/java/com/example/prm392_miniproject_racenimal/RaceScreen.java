@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -53,10 +54,14 @@ public class RaceScreen extends AppCompatActivity {
 
     private ConstraintLayout mainLayout;
 
+    private boolean isBackgroundChanged = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.race_game);
+
+        SoundHelper.startBackgroundMusic(this, R.raw.race_music);
 
         txtlogo = (TextView) findViewById(R.id.textView16);
 
@@ -107,8 +112,6 @@ public class RaceScreen extends AppCompatActivity {
 
         txtlogo.getPaint().setShader(textShader);
 
-        changeBackground();
-
         btnBack.setOnClickListener(v -> back());
     }
 
@@ -150,6 +153,7 @@ public class RaceScreen extends AppCompatActivity {
     }
 
     private void addMoney(Account user) {
+        SoundHelper.stopBackgroundMusic();
         Intent intent = new Intent(RaceScreen.this, WalletActivity.class);
         intent.putExtra("user", user);
         intent.putExtra("activity", "raceScreen");
@@ -207,6 +211,7 @@ public class RaceScreen extends AppCompatActivity {
     private void startRace() {
         resetProgress();
         setStartButton(btnStart, false);
+        isBackgroundChanged = false;
         btnBack.setEnabled(false);
         btnAdd.setEnabled(false);
         animateHorses();
@@ -253,6 +258,7 @@ public class RaceScreen extends AppCompatActivity {
             final int finishLine = 100; // Finish line at 100%
 
             new Thread(() -> {
+
                 while (seekBarBao.getProgress() < finishLine && seekBarTien.getProgress() < finishLine &&
                         seekBarBinh.getProgress() < finishLine && seekBarManh.getProgress() < finishLine &&
                         seekBarTung.getProgress() < finishLine) {
@@ -263,6 +269,13 @@ public class RaceScreen extends AppCompatActivity {
                         seekBarBinh.setProgress(seekBarBinh.getProgress() + random.nextInt(3));
                         seekBarManh.setProgress(seekBarManh.getProgress() + random.nextInt(3));
                         seekBarTung.setProgress(seekBarTung.getProgress() + random.nextInt(3));
+
+                        if (!isBackgroundChanged && (seekBarBao.getProgress() >= 50 || seekBarTien.getProgress() >= 50 ||
+                                seekBarBinh.getProgress() >= 50 || seekBarManh.getProgress() >= 50 ||
+                                seekBarTung.getProgress() >= 50)) {
+                            changeBackground();
+                            isBackgroundChanged = true;
+                        }
                     });
 
                     try {
@@ -273,6 +286,7 @@ public class RaceScreen extends AppCompatActivity {
                 }
 
                 handler.post(() -> {
+                    resetBackground();
                     String winnerMessage = "It's a Tie!";
                     String moneyWinMessage = "";
                     boolean isWinnerFound = false;
@@ -334,6 +348,7 @@ public class RaceScreen extends AppCompatActivity {
     }
 
     private void showResultDialog(String message, String moneyWinMessage) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(RaceScreen.this, R.raw.game_completed);
         View dialogView = getLayoutInflater().inflate(R.layout.result_main, null);
 
         ImageView winnerImage = dialogView.findViewById(R.id.gifImageView);
@@ -362,6 +377,15 @@ public class RaceScreen extends AppCompatActivity {
                 .setView(dialogView)
                 .setPositiveButton("OK", null)
                 .show();
+        mediaPlayer.start();
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+        });
+
     }
 
     private void loadBudget() {
@@ -419,9 +443,14 @@ public class RaceScreen extends AppCompatActivity {
     }
 
     private void back() {
+        SoundHelper.stopBackgroundMusic();
         Intent intent = new Intent(this, HomeScreen.class);
         intent.putExtra("user", user);
         startActivity(intent);
         finish();
+    }
+
+    private void resetBackground() {
+        mainLayout.setBackgroundResource(R.drawable.background_play);
     }
 }

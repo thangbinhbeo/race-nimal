@@ -23,6 +23,8 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_game);
 
+        SoundHelper.startBackgroundMusic(this, R.raw.homesong);
+
         txtUsername = findViewById(R.id.txtUsername);
         money = findViewById(R.id.money);
         addMoneyButton = findViewById(R.id.addMoneyButton);
@@ -55,6 +57,8 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     private void goToRaceScreen() {
+        SoundHelper.stopBackgroundMusic();
+
         Intent intent = new Intent(this, RaceScreen.class);
         intent.putExtra("user", user);
         startActivity(intent);
@@ -62,6 +66,8 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     private void logout() {
+        SoundHelper.stopBackgroundMusic();
+
         Intent intent = new Intent(this, LoginScreen.class);
         intent.putExtra("user", user);
         startActivity(intent);

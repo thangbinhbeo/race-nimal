@@ -25,8 +25,8 @@ public class WalletActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.wallet);
+
 
         btnAdd = findViewById(R.id.txtAdd);
         btnBack = findViewById(R.id.txtBack);
@@ -57,14 +57,15 @@ public class WalletActivity extends AppCompatActivity {
         }
         // Intent về MainActivity
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.bgm);
-        mediaPlayer.setLooping(false);
-        mediaPlayer.setOnCompletionListener(mp -> mp.start());
-        mediaPlayer.start();
+//        mediaPlayer = MediaPlayer.create(this, R.raw.bgm);
+//        mediaPlayer.setLooping(false);
+//        mediaPlayer.setOnCompletionListener(mp -> mp.start());
+//        mediaPlayer.start();
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(WalletActivity.this, R.raw.add_sound);
 
                 String amountString = etEnterAmount.getText().toString().trim();
                 if (!amountString.isEmpty()) {
@@ -75,6 +76,8 @@ public class WalletActivity extends AppCompatActivity {
                         currentBalance += amount;
                         updateWalletBalance();
 
+                        mediaPlayer.start();
+
                         Toast.makeText(WalletActivity.this, "Added $" + amount + " to your wallet!", Toast.LENGTH_SHORT).show();
 
                         intentFromThisPage.putExtra("user", AccountManager.getInstance(WalletActivity.this).getAccount(user));
@@ -84,6 +87,14 @@ public class WalletActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(WalletActivity.this, "Please enter an amount.", Toast.LENGTH_SHORT).show();
                 }
+
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.release();
+                    }
+                });
+
             }
         });
 

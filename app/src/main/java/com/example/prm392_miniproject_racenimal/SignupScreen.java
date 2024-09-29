@@ -28,11 +28,14 @@ public class SignupScreen extends AppCompatActivity {
     private TextView fakeBtnSignUp;
     private final boolean[] isPasswordVisible = {false};
 
+    private SoundHelper sound;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.signup_game);
+
+        SoundHelper.startBackgroundMusic(this, R.raw.background_login_signup);
 
         edPassword = (EditText) findViewById(R.id.editTextPassword);
         edConfirmPass = (EditText) findViewById(R.id.editTextConfirmPassword);
@@ -134,6 +137,8 @@ public class SignupScreen extends AppCompatActivity {
     private void signIn() {
         Intent intent = new Intent(this, LoginScreen.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
+
 }

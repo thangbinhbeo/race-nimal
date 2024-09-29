@@ -26,10 +26,13 @@ public class LoginScreen extends AppCompatActivity {
     private TextView ButtonLogin;
     private final boolean[] isPasswordVisible = {false};
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_game);
+
+        SoundHelper.startBackgroundMusic(this, R.raw.background_login_signup);
 
         edPassword = (EditText) findViewById(R.id.editTextPassword);
         txtTitle = (TextView) findViewById(R.id.textViewLogo);
@@ -56,21 +59,18 @@ public class LoginScreen extends AppCompatActivity {
         txtTitle.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                // Xóa listener để tránh gọi nhiều lần
                 txtTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
-                // Tạo LinearGradient để áp dụng cho văn bản
                 Shader shader = new LinearGradient(
-                        0, 0, 0, txtTitle.getHeight(),  // Gradient theo chiều dọc (180 độ)
+                        0, 0, 0, txtTitle.getHeight(),
                         new int[] {
-                                Color.parseColor("#A9C9FF"),  // Màu bắt đầu
-                                Color.parseColor("#FFBBEC")   // Màu kết thúc
+                                Color.parseColor("#A9C9FF"),
+                                Color.parseColor("#FFBBEC")
                         },
                         null,
-                        Shader.TileMode.CLAMP  // Kiểu gradient
+                        Shader.TileMode.CLAMP
                 );
 
-                // Áp dụng shader cho paint của TextView
                 txtTitle.getPaint().setShader(shader);
             }
         });
@@ -109,9 +109,12 @@ public class LoginScreen extends AppCompatActivity {
                 }
             }
             if (isAuthenticated) {
+                SoundHelper.stopBackgroundMusic();
+
                 Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             } else {
                 Toast.makeText(this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
@@ -122,6 +125,8 @@ public class LoginScreen extends AppCompatActivity {
     private void signUp() {
         Intent intent = new Intent(this, SignupScreen.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
+
 }

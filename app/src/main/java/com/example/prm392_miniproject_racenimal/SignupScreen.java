@@ -118,12 +118,11 @@ public class SignupScreen extends AppCompatActivity {
         String confirmPassword = edConfirmPass.getText().toString();
 
         if(!userName.isEmpty() && !password.isEmpty() && password.equals(confirmPassword)) {
-            Account user = AccountManager.getInstance().getAccount(userName, password);
+            Account user = AccountManager.getInstance(this).getAccount(userName, password);
             if (user == null) {
                 user = new Account(userName, password, 100);
-                AccountManager.getInstance().addAccount(user);
+                AccountManager.getInstance(this).addAccount(user);
                 Intent intent = new Intent(this, LoginScreen.class);
-                intent.putExtra("user", user);
                 startActivity(intent);
                 finish();
             } else {

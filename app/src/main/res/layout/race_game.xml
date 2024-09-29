@@ -101,7 +101,7 @@
         android:thumb="@drawable/bao_horse"
         android:splitTrack="false"
         app:layout_constraintTop_toBottomOf="@+id/cardView3"
-        />
+        android:enabled="false"/>
 
     <TextView
         android:id="@+id/textView6"
@@ -124,6 +124,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:progressDrawable = "@drawable/wood"
         android:thumb="@drawable/tien_cat"
+        android:enabled="false"
         android:splitTrack="false"
         app:layout_constraintTop_toBottomOf="@+id/seekBarBao" />
 
@@ -147,6 +148,7 @@
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         android:progressDrawable = "@drawable/lavendar"
+        android:enabled="false"
         android:thumb="@drawable/manh_butterfly"
         android:splitTrack="false"
         app:layout_constraintTop_toBottomOf="@+id/seekBarTien" />
@@ -171,6 +173,7 @@
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         android:progressDrawable = "@drawable/water"
+        android:enabled="false"
         android:thumb="@drawable/binh_whale"
         android:splitTrack="false"
         app:layout_constraintTop_toBottomOf="@+id/seekBarManh" />
@@ -195,6 +198,7 @@
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         android:progressDrawable = "@drawable/ice"
+        android:enabled="false"
         android:thumb="@drawable/tung_polar"
         android:splitTrack="false"
         app:layout_constraintTop_toBottomOf="@+id/seekBarBinh" />
@@ -231,7 +235,7 @@
                 android:background="@color/white">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/btnLogout"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:layout_constraintBottom_toBottomOf="parent"

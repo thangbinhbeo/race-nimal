@@ -35,13 +35,6 @@ public class LoginScreen extends AppCompatActivity {
         txtTitle = (TextView) findViewById(R.id.textViewLogo);
         eyeIcon = (ImageView) findViewById(R.id.iconEye);
 
-        Intent intent = getIntent();
-        Account user = intent.getParcelableExtra("user");
-
-        if (user != null) {
-            AccountManager.getInstance().getAccountList().add(user);
-        }
-
         txtUsername = (EditText) findViewById(R.id.txtUsername);
         SignUpLink = (TextView) findViewById(R.id.SignUpLink);
         ButtonLogin = findViewById(R.id.ButtonLogin);
@@ -108,7 +101,7 @@ public class LoginScreen extends AppCompatActivity {
 
         if(!userName.isEmpty() && !password.isEmpty()) {
             Account user = null;
-            for (Account account : AccountManager.getInstance().getAccountList()) {
+            for (Account account : AccountManager.getInstance(this).getAccountList()) {
                 if (account.getUsername().equals(userName) && account.getPassword().equals(password)) {
                     isAuthenticated = true;
                     user = account;
@@ -116,7 +109,7 @@ public class LoginScreen extends AppCompatActivity {
                 }
             }
             if (isAuthenticated) {
-                Intent intent = new Intent(LoginScreen.this, RaceScreen.class);
+                Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
                 finish();

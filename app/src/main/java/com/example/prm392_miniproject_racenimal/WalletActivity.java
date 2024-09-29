@@ -37,6 +37,9 @@ public class WalletActivity extends AppCompatActivity {
         intentfromMain = getIntent();
 
         Account user = intentfromMain.getParcelableExtra("user");
+
+        String activity = intentfromMain.getStringExtra("activity");
+
         if (user == null) {
             Toast.makeText(this, "Null user!", Toast.LENGTH_SHORT).show();
             finish();
@@ -45,8 +48,14 @@ public class WalletActivity extends AppCompatActivity {
             updateWalletBalance();
         }
 
+        if (!activity.isEmpty()) {
+            if (activity.equals("raceScreen")) {
+                intentFromThisPage = new Intent(WalletActivity.this, RaceScreen.class);
+            } else {
+                intentFromThisPage = new Intent(WalletActivity.this, HomeScreen.class);
+            }
+        }
         // Intent về MainActivity
-        intentFromThisPage = new Intent(WalletActivity.this, RaceScreen.class);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.bgm);
         mediaPlayer.setLooping(false);
@@ -61,14 +70,14 @@ public class WalletActivity extends AppCompatActivity {
                 if (!amountString.isEmpty()) {
                     double amount = Double.parseDouble(amountString);
                     if (amount > 0) {
+                        AccountManager.getInstance(WalletActivity.this).addMoney(user, amount);
 
                         currentBalance += amount;
                         updateWalletBalance();
 
                         Toast.makeText(WalletActivity.this, "Added $" + amount + " to your wallet!", Toast.LENGTH_SHORT).show();
 
-                        user.setBudget(currentBalance);
-                        intentFromThisPage.putExtra("user", user);
+                        intentFromThisPage.putExtra("user", AccountManager.getInstance(WalletActivity.this).getAccount(user));
                     } else {
                         Toast.makeText(WalletActivity.this, "Please enter a positive amount.", Toast.LENGTH_SHORT).show();
                     }
@@ -81,6 +90,7 @@ public class WalletActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                intentFromThisPage.putExtra("user", AccountManager.getInstance(WalletActivity.this).getAccount(user));
                 startActivity(intentFromThisPage);
                 finish();
             }
